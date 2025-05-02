@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { useRouter } from 'next/navigation'
 
 const formLogin = z.object({
     email: z.string().email().min(5).max(50),
@@ -31,6 +32,8 @@ const formLogin = z.object({
 })
 
 function FormLogin() {
+    const router = useRouter()
+
     const form = useForm<z.infer<typeof formLogin>>({
         resolver: zodResolver(formLogin),
         defaultValues: {
@@ -49,18 +52,22 @@ function FormLogin() {
 
     return (
         <Form {...form}>
-            <form onSubmit={(e) => { console.log("kdkdkdk") }} className="space-y-8">
+            <form onSubmit={(e) => {
+                e.preventDefault();
+                router.push('/dashboard');
+                onSubmit(form.getValues());
+            }} className="space-y-3">
                 <FormField
                     control={form.control}
                     name="email"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>email</FormLabel>
+                            <FormLabel>Email</FormLabel>
                             <FormControl>
-                                <Input placeholder="shadcn" {...field} />
+                                <Input placeholder="danny@email.com" {...field} />
                             </FormControl>
                             <FormDescription>
-                                This is your Email.
+                                Just press submit.
                             </FormDescription>
                             <FormMessage />
                         </FormItem>
@@ -71,23 +78,27 @@ function FormLogin() {
                     name="password"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>password</FormLabel>
+                            <FormLabel>Password</FormLabel>
                             <FormControl>
-                                <Input placeholder="shadcn" {...field} />
+                                <Input placeholder="password" {...field} />
                             </FormControl>
                             <FormDescription>
-                                This is your Password.
+                                Just press submit.
                             </FormDescription>
                             <FormMessage />
                         </FormItem>
                     )}
                 />
 
-
+                <div>
+                    <div className='text-end'>
+                        <a href="#" className='text-gray-400'>Forgot Password?</a>
+                    </div>
+                </div>
                 <Button
                     variant="outline"
                     type="submit"
-                    className=''>
+                    className='cursor-pointer w-full'>
                     {/* <Loader2 className="animate-spin" /> */}
                     Submit</Button>
             </form>

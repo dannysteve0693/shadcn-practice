@@ -154,7 +154,7 @@ const data = {
         },
         {
             name: "Applications",
-            url: "#",
+            url: "/dashboard/applications",
             icon: FileIcon,
         },
     ],

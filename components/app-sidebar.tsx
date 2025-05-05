@@ -20,6 +20,7 @@ import {
 } from "lucide-react"
 
 import { NavDocuments } from "@/components/nav-documents"
+import { NavWithChild } from "@/components/nav-with-child"
 import { NavMain } from "@/components/nav-main"
 import { NavSecondary } from "@/components/nav-secondary"
 import { NavUser } from "@/components/nav-user"
@@ -35,8 +36,8 @@ import {
 
 const data = {
     user: {
-        name: "shadcn",
-        email: "m@example.com",
+        name: "Danny",
+        email: "danny@mail.com",
         avatar: "/vercel.svg",
     },
     navMain: [
@@ -114,36 +115,48 @@ const data = {
             ],
         },
     ],
-    navSecondary: [
+    applications: [
         {
-            title: "Settings",
-            url: "#",
-            icon: SettingsIcon,
-        },
-        {
-            title: "Get Help",
-            url: "#",
-            icon: HelpCircleIcon,
-        },
-        {
-            title: "Search",
-            url: "#",
-            icon: SearchIcon,
-        },
-    ],
-    documents: [
-        {
-            name: "Data Library",
+            name: "Company Details",
             url: "#",
             icon: DatabaseIcon,
         },
         {
-            name: "Reports",
+            name: "HR Policy Chatbot",
             url: "#",
             icon: ClipboardListIcon,
         },
         {
-            name: "Word Assistant",
+            name: "AI Governance Chatbot",
+            url: "#",
+            icon: FileIcon,
+        },
+    ],
+    user_management: [
+        {
+            name: "Users",
+            url: "#",
+            icon: DatabaseIcon,
+        },
+        {
+            name: "Teams",
+            url: "#",
+            icon: ClipboardListIcon,
+        }
+    ],
+    workbench: [
+        {
+            name: "Agent",
+            url: "#",
+            icon: DatabaseIcon,
+        },
+        {
+            name: "Agencies",
+            url: "#",
+            icon: ClipboardListIcon,
+        },
+        {
+            name: "Applications",
             url: "#",
             icon: FileIcon,
         },
@@ -162,16 +175,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                         >
                             <a href="#">
                                 <ArrowUpCircleIcon className="h-5 w-5" />
-                                <span className="text-base font-semibold">Acme Inc.</span>
+                                <span className="text-base font-semibold">Go AI</span>
                             </a>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
                 </SidebarMenu>
             </SidebarHeader>
             <SidebarContent>
-                <NavMain items={data.navMain} />
-                <NavDocuments items={data.documents} />
-                <NavSecondary items={data.navSecondary} className="mt-auto" />
+                <NavWithChild title={"Applications"} items={data.applications} />
+                <NavWithChild title={"User Management"} items={data.user_management} />
+                <NavWithChild title={"Workbench"} items={data.workbench} />
             </SidebarContent>
             <SidebarFooter>
                 <NavUser user={data.user} />

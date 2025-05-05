@@ -19,10 +19,7 @@ import {
     UsersIcon,
 } from "lucide-react"
 
-import { NavDocuments } from "@/components/nav-documents"
 import { NavWithChild } from "@/components/nav-with-child"
-import { NavMain } from "@/components/nav-main"
-import { NavSecondary } from "@/components/nav-secondary"
 import { NavUser } from "@/components/nav-user"
 import {
     Sidebar,
